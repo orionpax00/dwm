@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 4;        /* gaps */
+static const unsigned int gappx     = 2;        /* gaps */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
@@ -28,8 +28,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Vlc",      NULL,	  NULL,	      1,            1,           -1 },
+	{ "Gimp",     NULL,       NULL,       1 << 7,       1,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       1,           -1 },
 };
 
 /* layout(s) */
