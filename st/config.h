@@ -5,8 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
+//static char *font = "Liberation Mono:pixelsize=18:antialias=true:autohint=true";
 static char *font = "Liberation Mono:pixelsize=18:antialias=true:autohint=true";
-//static char *font = "Hack Nerd Font:pixelsize=18:antialias=true:autohint=true";
+static char *font2[] = {
+				"DejaVu Mono Nerd:pixelsize=12:antialias=true:autohint=true",
+				"Liberation Mono:pixelsize=12:antialias=true:autohint=true"
+};
 static int borderpx = 1;
 
 /*
@@ -141,7 +145,7 @@ static int ignoreselfg = 1;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 4;
 
 /*
  * Default columns and rows numbers
