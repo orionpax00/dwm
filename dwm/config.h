@@ -8,6 +8,7 @@ static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 10;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
+static const int swallowfloating    = 0;
 static const char *fonts[]          = { "DejaVu Sans Mono:size=10" };
 static const char dmenufont[]       = "DejaVu Sans Mono:size=10";
 static const char col_gray1[]       = "#0d1015";
@@ -29,11 +30,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Sxiv",      NULL,	  NULL,	      0,	    1,           -1 },
-	{ "Tilda",     NULL,       NULL,      0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "mpv",     NULL,       NULL,	      0,            0,           -1 },
+  /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Sxiv",    NULL,     NULL,	         0,	        1,          0,           1,        -1 },
+	{ "Tilda",   NULL,     NULL,           0,         1,          0,           1,        -1 },
+	{ "mpv",     NULL,     NULL,	         0,         0,          0,           0,        -1 },
+	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+  { "Firefox", NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
+  { "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+
+
 };
 
 /* layout(s) */
