@@ -11,11 +11,37 @@ static const int sidepad            = 0;       /* horizontal padding of bar */
 static const int swallowfloating    = 0;
 static const char *fonts[]          = { "DejaVu Sans Mono:size=10" };
 static const char dmenufont[]       = "DejaVu Sans Mono:size=10";
+
+static const char norm_fg[] = "#c1c9ce";
+static const char norm_bg[] = "#1c1926";
+static const char norm_border[] = "#878c90";
+
+static const char sel_fg[] = "#c1c9ce";
+static const char sel_bg[] = "#CF76B1";
+static const char sel_border[] = "#c1c9ce";
+
+static const char urg_fg[] = "#c1c9ce";
+static const char urg_bg[] = "#A5719B";
+static const char urg_border[] = "#A5719B";
+
+
+
+
+
+
 static const char col_gray1[]       = "#0d1015";
 static const char col_gray2[]       = "#000000";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#000000";
 static const char col_cyan[]        = "#3aa4ff";
+
+static const char *colors[][3]      = {
+    /*               fg           bg         border                         */
+    [SchemeNorm] = { norm_fg,     norm_bg,   norm_border }, // unfocused wins
+    [SchemeSel]  = { sel_fg,      sel_bg,    sel_border },  // the focused win
+    [SchemeUrg] =  { urg_fg,      urg_bg,    urg_border },
+};
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_cyan },
@@ -69,16 +95,16 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *nnncmd[]  = { "st", "sh", "-c", "nnn;", "sh", NULL};
-static const char *lockscreen[] = { "st", "sh", "-c", "slock", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *nnncmd[]  = { "alacritty", "-e", "zsh", "-c", "nnn -o -c -T e", NULL};
+static const char *lockscreen[] = { "alacritty", "-e", "zsh", "-c", "slock", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = nnncmd } },
-	{ MODKEY|ShiftMask,		XK_l,	   spawn,          {.v = lockscreen} },
+	{ MODKEY|ShiftMask,		          XK_l,	     spawn,          {.v = lockscreen} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
